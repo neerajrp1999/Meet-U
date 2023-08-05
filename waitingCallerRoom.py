@@ -18,11 +18,11 @@ class caller():
 
         self.root = Tk()
         self.root.geometry('640x480')
-        self.FeedLabel=Label(self.root,text="Calling....   wait for response....")
-        self.FeedLabel.place(x=225, y=50)
+        self.FeedLabel=Label(self.root,text="Calling....   wait for response....",width=550,height=500)
+        self.FeedLabel.pack(side="top")
         btn = Button(self.root, text = 'Drop Call', command = lambda:self.CancelCall())
-        btn.place(x=270, y=300) 
-        #self.startWork()        
+        btn.pack(side="bottom") 
+        self.startWork()        
         self.root.mainloop()
     
     def CancelCall(self):
@@ -41,8 +41,8 @@ class caller():
                     self.FeedLabel.config(text="Ringing the , wait for respones..")
                 elif(status=="3"):
                     self.FeedLabel.config(text="Connecting to user just wait..")
-                    self.root.destroy()
-                    VideoChatCaller.caller(getIpAddress(self.another_user))
+                    #self.root.destroy()
+                    VideoChatCaller.caller(getIpAddress(self.another_user),self.FeedLabel)
                     break
                 elif(status=="4"):
                     self.FeedLabel.config(text="Call Decline..")

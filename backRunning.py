@@ -8,7 +8,7 @@ import time
 import schedule
 from firebase_admin_tester import *
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import *
 import VideoChatCaller
 
 UserID=""
@@ -23,13 +23,27 @@ def BackgroundFunction():
         caller=getReceivingCall_CallData(UserID)
         ReceivingCall_CallDataUpdate(UserID,str(2))
 
-        msg_box =  messagebox.askquestion('confirmation', str(caller[1])+'('+str(caller[0])+') are calling....\nAre you sure you want to recieve this call?')
-        if msg_box==messagebox.YES:
+        root = Tk()
+        root.geometry('640x480')
+        FeedLabel=Label(root,text="str(caller[1])+'('+str(caller[0])+') are calling....\nAre you sure you want to recieve this call?",width=550,height=500)
+        FeedLabel.pack(side="top")
+
+        #msg_box =  messagebox.askquestion('confirmation', str(caller[1])+'('+str(caller[0])+') are calling....\nAre you sure you want to recieve this call?')
+        def yes():
             ReceivingCall_CallDataUpdate(UserID,str(3))
-            VideoChatCaller.caller(getIpAddress(caller[0]))
-        else:
+            print("yes")
+            
+            VideoChatCaller.caller(getIpAddress(caller[0]),FeedLabel)
+        def no():
             ReceivingCall_CallDataUpdate(UserID,str(4))
             canReceiveCall=True
+        
+        btn = Button(root, text = 'Accept Call', command = lambda:yes())
+        btn.pack(side="bottom") 
+        btn = Button(root, text = 'Drop Call', command = lambda:no())
+        btn.pack(side="bottom") 
+                
+        root.mainloop()
             
     print("Geeksforgeeks")
   

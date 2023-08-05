@@ -13,25 +13,15 @@ import tkinter
 from tkinter import Label,Button,Tk
 
 class caller:
-    def __init__(self,ip_of_send):
-        self.window = Tk()
-        
-        self.panel = Label(self.window,text="wait.. connecting....")
-        self.panel.pack(side="top")
-        
-        self.button = Button(self.window, text='Drop Call', command=self.stop)
-        self.button.pack(side="bottom")
-
-        self.window.wm_protocol("WM_DELETE_WINDOW", self.stop)
-        self.window.mainloop()
+    def __init__(self,ip_of_send,panel):
         
         IPAddr = socket.gethostbyname(socket.gethostname())
 
-        self.receiving_audio =AudioReceiver(IPAddr,9007)#your ip
-        self.receiving_video =StreamingServer(IPAddr,9006,self.panel)#your ip
+        self.receiving_audio =AudioReceiver(IPAddr,8081)#your ip
+        self.receiving_video =StreamingServer(IPAddr,8082,panel)#your ip
         
-        self.sending_audio=AudioSender(ip_of_send,9007)
-        self.sending_video=CameraClient(ip_of_send,9006)
+        self.sending_audio=AudioSender(ip_of_send,8081)
+        self.sending_video=CameraClient(ip_of_send,8082)
         
         t1=threading.Thread(target=self.receiving_audio.start_server)
         t1.start()
