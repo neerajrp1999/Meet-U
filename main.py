@@ -77,10 +77,9 @@ class MainWindow:
         self.panel = tk.Label(self.window,text="hgsfjsjf",width=550,height=500)
         self.panel.pack(side="top")
         
-        self.button = tk.Button(self.window, text='Take Photos', command=self.take_photo)
+        self.button = tk.Button(self.window, text='Drop Call', command=self.take_photo)
         self.button.pack(side="bottom")
-        self.button1 = tk.Button(self.window, text='Take Photos', command=self.take)
-        self.button1.pack(side="bottom")
+        
         
         self.stream = VideoStream(0)
         self.stream.start()
@@ -90,8 +89,7 @@ class MainWindow:
 
         self.window.wm_protocol("WM_DELETE_WINDOW", self.on_close)
         self.window.mainloop()
-    def take(self):
-        self.button1.destroy()
+  
     def video_loop(self):
         frame = self.stream.read()
         image = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)

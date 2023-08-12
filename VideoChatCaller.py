@@ -13,7 +13,9 @@ import tkinter
 from tkinter import Label,Button,Tk
 
 class caller:
-    def __init__(self,ip_of_send,panel):
+    def __init__(self,ip_of_send,panel,btn):
+        
+        btn.configure(command = lambda:self.stop)
         
         IPAddr = socket.gethostbyname(socket.gethostname())
 
@@ -33,7 +35,7 @@ class caller:
         t4.start()
         
     def stop(self):
-        self.window.destroy()
+        #self.window.destroy()
         self.sending_video.stop_stream()
         self.sending_audio.stop_stream()
         self.receiving_audio.stop_server()

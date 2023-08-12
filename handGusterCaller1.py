@@ -1,18 +1,15 @@
-
 import csv
 import copy
 import argparse
 import itertools
-from collections import Counter
-from collections import deque
+from collections import Counter,deque
 
 import cv2 as cv
 import numpy as np
 import mediapipe as mp
 
 from utils import CvFpsCalc
-from model import KeyPointClassifier
-from model import PointHistoryClassifier
+from model import KeyPointClassifier,PointHistoryClassifier
 
 
 def get_args():
@@ -134,6 +131,8 @@ def main():
                         pre_processed_point_history_list)
 
                 finger_gesture_history.append(finger_gesture_id)
+                most_common_fg_id = Counter(
+                    finger_gesture_history).most_common()
 
                 debug_image = draw_bounding_rect(use_brect, debug_image, brect)
                 debug_image = draw_landmarks(debug_image, landmark_list)
@@ -141,8 +140,8 @@ def main():
                     debug_image,
                     brect,
                     handedness,
-                    keypoint_classifier_labels[hand_sign_id]
-                    
+                    keypoint_classifier_labels[hand_sign_id],
+                    point_history_classifier_labels[most_common_fg_id[0][0]],
                 )
         else:
             point_history.append([0, 0])
@@ -466,7 +465,8 @@ def draw_bounding_rect(use_brect, image, brect):
     return image
 
 
-def draw_info_text(image, brect, handedness, hand_sign_text):
+def draw_info_text(image, brect, handedness, hand_sign_text,
+                   finger_gesture_text):
     cv.rectangle(image, (brect[0], brect[1]), (brect[2], brect[1] - 22),
                  (0, 0, 0), -1)
     
@@ -476,6 +476,12 @@ def draw_info_text(image, brect, handedness, hand_sign_text):
         info_text = info_text + ':' + hand_sign_text
     cv.putText(image, info_text, (brect[0] + 5, brect[1] - 4), cv.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1, cv.LINE_AA)
     
+
+    if finger_gesture_text != "":
+       
+        cv.putText(image, "Finger Gesture:" + finger_gesture_text, (10, 60),
+                   cv.FONT_HERSHEY_SIMPLEX, 1.0, (255, 255, 255), 2,
+                   cv.LINE_AA)
 
     return image
 

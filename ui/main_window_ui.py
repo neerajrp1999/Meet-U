@@ -273,6 +273,7 @@ class Ui_MainWindow(object):
         self.add_new_contact_leftmenu_pushButton.setAutoExclusive(True)
         self.add_new_contact_leftmenu_pushButton.setObjectName("add_new_contact_leftmenu_pushButton")
         self.verticalLayout.addWidget(self.add_new_contact_leftmenu_pushButton)
+        """
         self.history_leftmenu_pushButton = QtWidgets.QPushButton(self.menuWidget)
         self.history_leftmenu_pushButton.setMinimumSize(QtCore.QSize(0, 40))
         self.history_leftmenu_pushButton.setMaximumSize(QtCore.QSize(16777215, 35))
@@ -281,6 +282,7 @@ class Ui_MainWindow(object):
         self.history_leftmenu_pushButton.setAutoExclusive(True)
         self.history_leftmenu_pushButton.setObjectName("history_leftmenu_pushButton")
         self.verticalLayout.addWidget(self.history_leftmenu_pushButton)
+        """
         spacerItem = QtWidgets.QSpacerItem(20, 574, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout.addItem(spacerItem)
         self.logout_leftmenu_pushButton = QtWidgets.QPushButton(self.menuWidget)
@@ -495,7 +497,7 @@ class Ui_MainWindow(object):
         self.stackedWidget.addWidget(self.page_3)
         """
         
-        
+        """
         self.page_page3 = QtWidgets.QWidget()
         self.page_page3.setObjectName("page_page3")
         self.gridLayout_4_page3 = QtWidgets.QGridLayout(self.page_page3)
@@ -569,7 +571,7 @@ class Ui_MainWindow(object):
         self.gridLayout_2_page3.addWidget(self.tableWidget_call_history_page3, 0, 0, 1, 1)
         self.gridLayout_4_page3.addWidget(self.resultFrame_page3, 1, 0, 1, 1)
         self.stackedWidget.addWidget(self.page_page3)
-        
+        """
         
         
         
@@ -595,7 +597,7 @@ class Ui_MainWindow(object):
         MainWindow.setWindowTitle(_translate("MainWindow", "MeetU"))
         self.contact_list_leftmenu_pushButton.setText(_translate("MainWindow", "Contact List"))
         self.add_new_contact_leftmenu_pushButton.setText(_translate("MainWindow", "ADD New Contact"))
-        self.history_leftmenu_pushButton.setText(_translate("MainWindow", "History"))
+        #self.history_leftmenu_pushButton.setText(_translate("MainWindow", "History"))
         self.logout_leftmenu_pushButton.setText(_translate("MainWindow", "LogOut"))
         self.search_label_contact_list.setText(_translate("MainWindow", "Search"))
         self.RefreshBtn_contact_list_page.setText(_translate("MainWindow", "Refresh"))
@@ -621,6 +623,7 @@ class Ui_MainWindow(object):
         self.name_label_addnewcontact_page2.setText(_translate("MainWindow", "Name"))
         self.gmailid_label_addnewcontact_page2.setText(_translate("MainWindow", "G-Mail ID"))
         
+        """
         self.search_label_page3.setText(_translate("MainWindow", "Search"))
         self.showRefreshBtn_page3.setText(_translate("MainWindow", "Refresh"))
         self.showSearchBtn_page3.setText(_translate("MainWindow", "Search"))
@@ -639,5 +642,6 @@ class Ui_MainWindow(object):
         __sortingEnabled_page3 = self.tableWidget_call_history_page3.isSortingEnabled()
         self.tableWidget_call_history_page3.setSortingEnabled(False)
         self.tableWidget_call_history_page3.setSortingEnabled(__sortingEnabled_page3)
+        """
 
 from static import resource_rc

@@ -33,16 +33,16 @@ class MainWindow(QMainWindow):
         # menu widget and main window
         self.contact_list_leftmenu = self.ui.contact_list_leftmenu_pushButton
         self.add_new_contact_leftmenu = self.ui.add_new_contact_leftmenu_pushButton
-        self.history_leftmenu = self.ui.history_leftmenu_pushButton
+        #self.history_leftmenu = self.ui.history_leftmenu_pushButton
 
         self.pages = self.ui.stackedWidget
 
         self.search_lineEdit_page1 = self.ui.search_lineEdit_contact_list
         self.table_contact_list = self.ui.tableWidget_contact_list_page1
-        self.tableWidget_call_history_page3 = self.ui.tableWidget_call_history_page3
+        #self.tableWidget_call_history_page3 = self.ui.tableWidget_call_history_page3
 
         self.ui.search_lineEdit_contact_list.textChanged.connect(self.on_SearchBtn_contact_list_page_clicked)
-        self.ui.search_lineEdit_page3.textChanged.connect(self.on_showSearchBtn_page3_clicked)
+        #self.ui.search_lineEdit_page3.textChanged.connect(self.on_showSearchBtn_page3_clicked)
 
         #page2
         self.gmail_lineEdit_addnewcontact_page2 = self.ui.gmail_lineEdit_addnewcontact_page2
@@ -67,8 +67,8 @@ class MainWindow(QMainWindow):
             lambda: self.do_change_page(self.contact_list_leftmenu))
         self.add_new_contact_leftmenu.toggled.connect(
             lambda: self.do_change_page(self.add_new_contact_leftmenu))
-        self.history_leftmenu.toggled.connect(
-            lambda: self.do_change_page(self.history_leftmenu))
+        #self.history_leftmenu.toggled.connect(
+        #    lambda: self.do_change_page(self.history_leftmenu))
 
         # search password list by condition(username and website)
         #self.search_lineEdit.textChanged.connect(self.on_SearchBtn_contact_list_page_clicked)
@@ -167,7 +167,7 @@ class MainWindow(QMainWindow):
         
     def call(self):
         pass
-      
+    """
     @pyqtSlot()
     def on_showSearchBtn_page3_clicked(self):
         search_string=self.ui.search_lineEdit_page3.text().strip()
@@ -180,7 +180,7 @@ class MainWindow(QMainWindow):
                search_string.lower() in str(row_data.get(gmail)).lower()):
                 temp.append(row_data)
         self.addDataInContactTable(temp)
-
+    """
     @pyqtSlot()
     def on_SearchBtn_contact_list_page_clicked(self):
         search_string=self.search_lineEdit_page1.text().strip()
@@ -202,7 +202,7 @@ class MainWindow(QMainWindow):
             self.table_contact_list.setItem(i, 2,QTableWidgetItem(str(gmail)))
             self.table_contact_list.setCellWidget(i, 3, self.createWidget("Call",self.call_contact))
             self.table_contact_list.setCellWidget(i, 4, self.createWidget("Delete",self.delete_contact))
-    
+    """
     def addDataInCallHistoryTable(self, data):
         self.tableWidget_call_history_page3.setRowCount(len(data))
         for i,row_data in enumerate(data):
@@ -213,7 +213,7 @@ class MainWindow(QMainWindow):
             self.tableWidget_call_history_page3.setItem(i, 3,QTableWidgetItem(str("Call Type")))
             self.tableWidget_call_history_page3.setItem(i, 4,QTableWidgetItem(str(gmail)))
             self.tableWidget_call_history_page3.setCellWidget(i, 5, self.createWidget("Delete",self.delete_contact))
-    
+    """
 
     def createWidget(self,name,click_method):
         self.btn = QPushButton()
